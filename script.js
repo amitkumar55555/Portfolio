@@ -24,6 +24,6 @@ function typeInto(elId, text, baseSpeed, done) {
 
   window.addEventListener('DOMContentLoaded', () => {
     typeInto('typed-name', 'Amit Kumar', 140, () => {
-      typeInto('typed-sub', 'Aspiring Software Engineer building practical, real-world web applications with HTML, CSS, and JavaScript — from games and utilities to a scheduling tool used for an actual small business.', 45);
+      typeInto('typed-sub', 'Aspiring Software Engineer building practical, real-world web applications with HTML, CSS, and JavaScript, from games and utilities to a scheduling tool used for an actual small business.', 45);
     });
   });
