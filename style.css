@@ -34,6 +34,18 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-photo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 18%;
+    filter: grayscale(100%) contrast(1.05);
+    border: 1px solid var(--ink);
   }
   nav ul { list-style: none; display: flex; gap: 20px; }
   nav a {
