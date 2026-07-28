@@ -27,3 +27,22 @@ function typeInto(elId, text, baseSpeed, done) {
       typeInto('typed-sub', 'Aspiring Software Engineer building practical, real-world web applications with HTML, CSS, and JavaScript, from games and utilities to a scheduling tool used for an actual small business.', 45);
     });
   });
+
+  // Resume is password-protected. Recruiters get the password directly
+  // (cover letter / application message / LinkedIn) rather than a public link.
+  function requestResumeDownload(event) {
+    event.preventDefault();
+    const RESUME_PASSWORD = atob('SHRjc29ueUAxMjM=');
+    const attempt = window.prompt('This resume is password-protected.\nEnter the password shared with you to download it:');
+    if (attempt === null) return;
+    if (attempt === RESUME_PASSWORD) {
+      const a = document.createElement('a');
+      a.href = 'Amit_Kumar_Resume.pdf';
+      a.download = 'Amit_Kumar_Resume.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } else {
+      alert('Incorrect password. Please double check the password you were given, or contact amitkumargupta789@gmail.com.');
+    }
+  }
