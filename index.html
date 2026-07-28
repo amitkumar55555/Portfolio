@@ -73,16 +73,57 @@
 
     <div class="project-featured">
       <span class="badge">Featured</span>
-      <h3>Staff Roster Manager</h3>
+      <h3>Shift Roster — CAPI Berlin</h3>
+
+      <div class="shot-grid">
+        <img class="shot-full" src="screenshots/roster-demo.gif" alt="Weekly and monthly views, rotating assignments">
+        <img class="shot-half" src="screenshots/roster-weekly-desktop.png" alt="Weekly view, desktop">
+        <img class="shot-half" src="screenshots/roster-monthly-desktop.png" alt="Monthly view, desktop">
+        <img class="shot-mobile" src="screenshots/roster-weekly-mobile.png" alt="Mobile view, installed as a home-screen app">
+      </div>
+
+      <p class="proj-label">The problem</p>
       <p>
-        A shift-scheduling web app built for a small electronics store, helping the owner manage
-        what time each employee needs to arrive and leave. Solves a real day-to-day scheduling
-        problem rather than being a tutorial project.
+        A Berlin store needed coverage from 4am open to 9pm close, with two shifts that could
+        never be left empty. Eight staff across three contract types (full-time, weekend-only,
+        minijob) each carried different hard limits — and the rules interact badly: the weekend
+        needs two mandatory shifts covered, but only one person was contractually allowed to work
+        weekends at all. Scheduling that by hand meant either breaking someone's contract or
+        quietly leaving a shift uncovered.
       </p>
+
+      <p class="proj-label">What I built</p>
+      <p>
+        A hand-built staged rule engine that auto-generates a full week or month of shifts from
+        the staff list and contract rules, plus a manual editing layer (drag between shifts,
+        remove, add from a dropdown) so a manager can fix the edge cases the algorithm won't
+        always get right — with manual edits stored separately so they survive re-shuffling.
+      </p>
+
+      <p class="proj-label">What actually broke</p>
+      <p>
+        The two "always true" rules — 5-day cap and mandatory coverage — turned out to be
+        mathematically incompatible some weeks given the actual staffing. Fixed with an explicit
+        tiered priority system (fully-compliant schedule first, then relax the soft cap, then
+        allow double-booking as a last resort) with every override logged and shown to the
+        manager instead of hidden. Separately, a date bug used <code>toISOString()</code>, which
+        converts to UTC first — rolling local midnight back a day for any timezone ahead of UTC,
+        Berlin included, and silently shifting the weekend-only employee's schedule. Every fix
+        was caught by regression tests run against the scheduling logic directly in Node, not by
+        clicking through the UI.
+      </p>
+
+      <p class="proj-label">Next up</p>
+      <p>
+        Persistence (nothing survives a refresh yet), swapping the staged heuristics for a real
+        constraint solver, and a proper automated test suite instead of ad hoc per-bug scripts.
+      </p>
+
       <div class="tech-row">
         <span class="tech-tag">HTML</span>
         <span class="tech-tag">CSS</span>
         <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Node (regression tests)</span>
       </div>
       <div class="project-links">
         <a href="https://github.com/amitkumar55555/roster" target="_blank" rel="noopener">View Repository →</a>
